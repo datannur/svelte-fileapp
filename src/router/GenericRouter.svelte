@@ -1,4 +1,5 @@
 <script lang="ts" generics="T extends string">
+  import { untrack } from 'svelte'
   import type { Component } from 'svelte'
   import type { Match } from 'navigo'
   import { router } from './router.svelte'
@@ -30,13 +31,17 @@
   }
 
   let {
-    routerIndex,
-    whenAppReady,
+    routerIndex: routerIndexProp,
+    whenAppReady: whenAppReadyProp,
     onRouteChange,
     getEntityData,
     errorPage = '_error' as T,
-    loadingPage = '_loading' as T,
+    loadingPage: loadingPageProp = '_loading' as T,
   }: Props<T> = $props()
+
+  const routerIndex = untrack(() => routerIndexProp)
+  const whenAppReady = untrack(() => whenAppReadyProp)
+  const loadingPage = untrack(() => loadingPageProp)
 
   let entityGlobal = $state('')
   let params = $state({})
