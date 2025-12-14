@@ -10,9 +10,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bassim-matar/svelte-fileapp.git"
+    "url": "git+https://github.com/datannur/svelte-fileapp.git"
   },
-  "homepage": "https://github.com/bassim-matar/svelte-fileapp/tree/main/svelte-fileapp#readme",
+  "homepage": "https://github.com/datannur/svelte-fileapp/tree/main/svelte-fileapp#readme",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
