@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+## 0.0.15
+
+- fix: update dependencies
+
 ## 0.0.14
 
 - refactor: migrate to organisation datannur and use trusted publisher
