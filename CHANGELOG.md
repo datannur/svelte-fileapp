@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+## 0.0.16
+
+- fix: update dependencies
+
 ## 0.0.15
 
 - fix: update dependencies
