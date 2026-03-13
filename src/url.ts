@@ -45,7 +45,6 @@ export class UrlParam {
 
   static edit(key: string, value: string | null, mode: 'set' | 'delete') {
     const loc = window.location
-    let hash = ''
     const paramsString = loc.href.split('?')[1]
     const params = new URLSearchParams(paramsString)
     if (mode === 'set') {
@@ -53,21 +52,23 @@ export class UrlParam {
     } else if (mode === 'delete') {
       params.delete(key)
     }
-    if (appMode === staticRender) {
-      hash = ''
-    } else {
-      hash = loc.hash.split('?')[0]
-      if (hash === '' && params.toString() !== '') {
-        hash = hashPrefix
-      }
-      if (hash === hashPrefix && params.toString() === '') hash = ''
-    }
+    const hash = this.computeHash(loc, params)
     const url = loc.protocol + '//' + loc.host + loc.pathname + hash
     let urlWithParams = url
     if (params.toString() !== '') {
       urlWithParams += '?' + params.toString()
     }
     window.history.replaceState(null, '', urlWithParams)
+  }
+
+  private static computeHash(loc: Location, params: URLSearchParams): string {
+    if (appMode === staticRender) return ''
+    let hash = loc.hash.split('?')[0]
+    if (hash === '' && params.toString() !== '') {
+      hash = hashPrefix
+    }
+    if (hash === hashPrefix && params.toString() === '') return ''
+    return hash
   }
 
   static getAllParams() {
