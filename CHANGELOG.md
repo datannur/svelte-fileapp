@@ -1,5 +1,11 @@
 # svelte-fileapp
 
+## 0.0.17
+
+- fix: add `default` export condition for GenericRouter.svelte
+- fix: update tsconfig moduleResolution to `bundler` for Vite 8 compatibility
+- chore: update dependencies
+
 ## 0.0.16
 
 - fix: update dependencies

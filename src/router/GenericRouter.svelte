@@ -84,12 +84,9 @@
     setTimeout(() => pageHash.set(UrlHash.getLevel1()), 1)
 
     setTimeout(() => {
-      let route = ''
-      if (window.location.hash) {
-        route = window.location.hash.split('#/')[1]?.split('?')[0] ?? ''
-      } else {
-        route = window.location.pathname.substring(1)
-      }
+      const route = window.location.hash
+        ? (window.location.hash.split('#/')[1]?.split('?')[0] ?? '')
+        : window.location.pathname.substring(1)
       pageLoadedRoute.set(route.replace(/\//g, '___'))
     }, 1)
   }
