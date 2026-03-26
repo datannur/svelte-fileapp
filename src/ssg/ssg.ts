@@ -7,7 +7,7 @@ import fs from 'fs'
 import http from 'http'
 import { chromium, type Browser, type Page } from 'playwright'
 import { SitemapStream, streamToPromise } from 'sitemap'
-import handler from 'serve-handler'
+import sirv from 'sirv'
 
 export interface SsgConfig {
   domain: string
@@ -48,11 +48,9 @@ export function startServer(
   port = 3000,
 ): Promise<http.Server> {
   return new Promise(resolve => {
+    const serve = sirv('.', { single: entryFile, dev: true })
     const server = http.createServer((req, res) => {
-      return handler(req, res, {
-        public: '.',
-        rewrites: [{ source: '**', destination: entryFile }],
-      })
+      serve(req, res)
     })
     server.listen(port, async () => {
       console.log(`⚡ Static server on http://localhost:${port}`)

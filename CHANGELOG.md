@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+## 0.0.18
+
+- fix: replace `serve-handler` with `sirv` to resolve `brace-expansion` vulnerability (GHSA-f886-m6hf-6m8v)
+
 ## 0.0.17
 
 - fix: add `default` export condition for GenericRouter.svelte
