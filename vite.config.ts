@@ -29,7 +29,7 @@ export default defineConfig({
         'svelte/store',
         'navigo',
         'sitemap',
-        'serve-handler',
+        'sirv',
         'playwright',
       ],
     },

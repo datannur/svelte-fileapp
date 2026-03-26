@@ -2,7 +2,7 @@ import { describe, it, expect, beforeAll, afterAll } from 'vitest'
 import { chromium } from 'playwright'
 import type { Browser, Page } from 'playwright'
 import http from 'http'
-import handler from 'serve-handler'
+import sirv from 'sirv'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -17,11 +17,9 @@ const baseUrl = `http://localhost:${port}`
 
 beforeAll(async () => {
   // Start server
+  const serve = sirv(distDir, { single: true, dev: true })
   server = http.createServer((req, res) => {
-    return handler(req, res, {
-      public: distDir,
-      rewrites: [{ source: '**', destination: '/index.html' }],
-    })
+    serve(req, res)
   })
 
   await new Promise<void>(resolve => {
