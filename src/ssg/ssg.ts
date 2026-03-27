@@ -44,11 +44,11 @@ export async function waitUntilReady(
  * Start a local HTTP server for SSG
  */
 export function startServer(
-  entryFile: string,
+  single: boolean | string = true,
   port = 3000,
 ): Promise<http.Server> {
   return new Promise(resolve => {
-    const serve = sirv('.', { single: entryFile, dev: true })
+    const serve = sirv('.', { single, dev: true })
     const server = http.createServer((req, res) => {
       serve(req, res)
     })
@@ -234,17 +234,18 @@ export async function generateStaticSite(
 ) {
   const startTime = new Date()
   const indexFile = config.indexFile ?? './index.html'
-  const entryPoint = config.entryPoint ?? './index-static-make.html'
+  const backupFile = indexFile + '.bak'
 
   let server: http.Server | undefined = undefined
   let browser: Browser | undefined = undefined
 
-  await createIndexFile(indexFile, entryPoint, {
+  await fs.promises.rename(indexFile, backupFile)
+  await createIndexFile(backupFile, indexFile, {
     indexSeo: config.indexSeo,
   })
 
   try {
-    server = await startServer(entryPoint, config.port)
+    server = await startServer(true, config.port)
     browser = await chromium.launch({
       headless: true,
       args: ['--disable-dev-shm-usage', '--no-sandbox'],
@@ -270,7 +271,7 @@ export async function generateStaticSite(
     if (server) cleanupPromises.push(stopServer(server))
 
     await Promise.all(cleanupPromises)
-    await fs.promises.unlink(entryPoint).catch(() => {})
+    await fs.promises.rename(backupFile, indexFile).catch(() => {})
 
     const timeTaken = ((+new Date() - +startTime) / 1000).toFixed(2)
     console.log(
