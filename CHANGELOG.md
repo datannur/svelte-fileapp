@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+## 0.0.19
+
+- fix: SSG serves wrong `index.html` when custom entry point coexists with `index.html`
+
 ## 0.0.18
 
 - fix: replace `serve-handler` with `sirv` to resolve `brace-expansion` vulnerability (GHSA-f886-m6hf-6m8v)
