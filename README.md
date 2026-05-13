@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+> **Deprecated**
+>
+> This package is deprecated and no longer maintained. It was previously used for internal datannur projects but is no longer in use. There is no supported replacement.
+
 A lightweight Svelte 5 library for building file-based applications with routing, SSG (Static Site Generation), and advanced URL management.
 
 ## Features
