@@ -1,5 +1,9 @@
 # svelte-fileapp
 
+## 0.0.20
+
+- chore: mark package as deprecated
+
 ## 0.0.19
 
 - fix: SSG serves wrong `index.html` when custom entry point coexists with `index.html`

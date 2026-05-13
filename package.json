@@ -1,7 +1,7 @@
 {
   "name": "svelte-fileapp",
-  "version": "0.0.19",
-  "description": "Svelte file application",
+  "version": "0.0.20",
+  "description": "Deprecated Svelte file application library",
   "type": "module",
   "license": "MIT",
   "keywords": [
